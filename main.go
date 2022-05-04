@@ -19,12 +19,10 @@ type Cat struct {
 	LivesLeft          int    `json:"livesLeft"`
 }
 
-//Listens for "GET" and writes in JSON format once received
+//writes JSON format once
 func Cats(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "GET" {
-		cats := readJsonFile()
-		json.NewEncoder(w).Encode(cats)
-	}
+	cats := readJsonFile()
+	json.NewEncoder(w).Encode(cats)
 }
 
 //makes sure we stay at /html.client

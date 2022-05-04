@@ -39,12 +39,8 @@ function displayCat(cat) {
   var info_div = document.createElement("div");
 
   // Checks that image format is correct, and makes it correct if not
-  //_img.src = verifyFileFormat('images/' + cat.image)
-  //_img.src = 'images/1.jpg'
   var verified_image = verifyFileFormat(cat.image);
-  console.log("verified: ", verified_image)
   _img.src = 'images/' + verified_image
-  //console.log("IMG: ", _img, "SRC: ", _img.src)
   _li.appendChild(_img);
 
   info_div.innerHTML = cat.name + '<br/>' + 'Cuteness: '
