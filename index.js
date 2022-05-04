@@ -11,21 +11,26 @@ function getCatFromGoServer(){
   });
 }
 
+//This is the solution that's not currently used
 function verifyFileFormat(url) {
   //Splits filename at seperator '.' to know if jpg or png
   var splittedString = url.split('.'[0])
+
   var req = new XMLHttpRequest();
-
-  req.open('GET', url, false);
+  req.open('GET', 'images/' + url, false);
   req.send();
-
+  
   //Tries to open filename, if status not OK then filename doesn't exist
   //and we change to png and return whole reformed string. Else return string as it came
   if (req.status!=200){
-    console.log("file format is wrong")
-    return splittedString[0] + ".png";
+
+    //COMMENT: use the second return if we don't want to presume '.png' exists
+    return verifyFileFormat(splittedString[0] + '.png')
+
+    //COMMENT: returns generic cat image
+    //return "arbitary_cat.jpg"
   }
-  else return url;
+  return url;
 }
 
 function displayCat(cat) {
@@ -34,7 +39,12 @@ function displayCat(cat) {
   var info_div = document.createElement("div");
 
   // Checks that image format is correct, and makes it correct if not
-  _img.src = verifyFileFormat('images/' + cat.image)
+  //_img.src = verifyFileFormat('images/' + cat.image)
+  //_img.src = 'images/1.jpg'
+  var verified_image = verifyFileFormat(cat.image);
+  console.log("verified: ", verified_image)
+  _img.src = 'images/' + verified_image
+  //console.log("IMG: ", _img, "SRC: ", _img.src)
   _li.appendChild(_img);
 
   info_div.innerHTML = cat.name + '<br/>' + 'Cuteness: '
@@ -82,8 +92,8 @@ function sortCatsInSessionStorage() {
 }
 
 //Loads Cats From Go Web Server To Local Storage
-// create array from local storage
 getCatFromGoServer()
+//Get From Session Storage
 let cats = JSON.parse(sessionStorage.getItem('Cats'))
 generateCats(cats)
 
