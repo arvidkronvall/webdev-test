@@ -25,7 +25,7 @@ func Cats(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(cats)
 }
 
-//makes sure we stay at /html.client
+//serves out html.client
 func Home(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, r.URL.Path[1:])
 }
