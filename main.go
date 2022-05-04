@@ -19,7 +19,7 @@ type Cat struct {
 	LivesLeft          int    `json:"livesLeft"`
 }
 
-//writes JSON format once
+//convert struct back to JSON and writes
 func Cats(w http.ResponseWriter, r *http.Request) {
 	cats := readJsonFile()
 	json.NewEncoder(w).Encode(cats)
