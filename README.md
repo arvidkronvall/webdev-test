@@ -10,6 +10,6 @@ Deploy:
 This web server will run on port ":5500".
 If loaded correctly http://localhost:5500/cats should show all the cats as JSON object
 
-2. run client on the same port (":5500") via live server or localhost :> localhost:5500/client.html
+2. run client on the same port (":5500") via live server or localhost :> http://localhost:5500/client.html
 
 3. Enjoy your cat experience
