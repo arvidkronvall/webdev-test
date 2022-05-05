@@ -7,9 +7,7 @@ Welcome!
 Deploy:
 
 1. run server via "go run main.go". 
-This web server will run on port ":5500".
-If loaded correctly http://localhost:5500/cats should show all the cats as JSON object
 
-2. run client on the same port (":5500")
+2. Put http://localhost:5500/html.client in your browser. Refresh once.
 
-3. Enjoy your cat experience
+3. Enjoy the cats
