@@ -1,7 +1,8 @@
-
+console.log("javascript super loaded")
 //fetches cats from Go Web Server
 function getCatFromGoServer(){
-  const url = "/cats"
+  const url = "http://localhost:5600/cats"
+
   fetch(url)
   .then(function(response) {
     return response.json();
@@ -89,7 +90,7 @@ function sortCatsInSessionStorage() {
 
 //Loads Cats From Go Web Server To Local Storage
 getCatFromGoServer()
-//Get From Session Storage
+
 let cats = JSON.parse(sessionStorage.getItem('Cats'))
 generateCats(cats)
 
