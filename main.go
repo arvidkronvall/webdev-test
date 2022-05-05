@@ -21,23 +21,17 @@ type Cat struct {
 
 //convert struct back to JSON and writes
 func Cats(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	//w.Header().Set("Access-Control-Allow-Credentials", "true")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	//w.Header().Set("Access-Control-Allow-Methods", "GET")
-	cats := readJsonFile()
-	json.NewEncoder(w).Encode(cats)
+	if r.Method == "GET" {
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		cats := readJsonFile()
+		json.NewEncoder(w).Encode(cats)
+	}
 
 }
 
-//serves out html.client
-// func Home(w http.ResponseWriter, r *http.Request) {
-// 	http.ServeFile(w, r, r.URL.Path[1:])
-// }
-
 func main() {
 	http.HandleFunc("/cats", Cats)
-	//http.HandleFunc("/", Home)
 
 	//Listens to the port that we're hosting our client on
 	//Fatal to receive error messages

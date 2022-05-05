@@ -1,15 +1,21 @@
 console.log("javascript super loaded")
-//fetches cats from Go Web Server
-function getCatFromGoServer(){
-  const url = "http://localhost:5600/cats"
 
-  fetch(url)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(jsonResponse) {
-    sessionStorage.setItem('Cats', JSON.stringify(jsonResponse.cats));
-  });
+//HTTP Request "GET" for cats - sets response to sessionstorage if found
+function getCatFromGoServer(){
+  var xmlhttp = new XMLHttpRequest();
+  var url = "http://localhost:5600/cats"
+
+  xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+      var myArr = JSON.parse(this.responseText);
+      sessionStorage.setItem('Cats', JSON.stringify(myArr.cats));
+      console.log("HAPPENING")
+      }
+  };
+
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+
 }
 
 //This is the solution that's not currently used
